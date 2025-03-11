@@ -25,7 +25,7 @@ export default function Home() {
       const response = await fetch("/api/tasks", {
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${session?.user?.accessToken}`,
+          Authorization: `Bearer ${session?.user?.accessToken}`,
         },
       });
       const data = await response.json();
@@ -44,7 +44,7 @@ export default function Home() {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${session?.user?.accessToken}`,
+          Authorization: `Bearer ${session?.user?.accessToken}`,
         },
         body: JSON.stringify(newTask),
       });
@@ -67,7 +67,7 @@ export default function Home() {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${session?.user?.accessToken}`,
+          Authorization: `Bearer ${session?.user?.accessToken}`,
         },
         body: JSON.stringify({ completed: !completed }),
       });
@@ -85,7 +85,7 @@ export default function Home() {
       const response = await fetch(`/api/tasks/${taskId}`, {
         method: "DELETE",
         headers: {
-          "Authorization": `Bearer ${session?.user?.accessToken}`,
+          Authorization: `Bearer ${session?.user?.accessToken}`,
         },
       });
 
@@ -114,7 +114,9 @@ export default function Home() {
       <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
         <div className="px-4 py-6 sm:px-0">
           <div className="bg-white shadow rounded-lg p-6 mb-6">
-            <h2 className="text-lg font-medium mb-4">Add New Task</h2>
+            <h2 className="text-lg font-medium mb-4 text-[#333]">
+              Add New Task
+            </h2>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <label
@@ -130,7 +132,8 @@ export default function Home() {
                   onChange={(e) =>
                     setNewTask({ ...newTask, title: e.target.value })
                   }
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                  className="px-3 mt-1 py-2 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm
+                  text-[#333]"
                   required
                 />
               </div>
@@ -147,7 +150,7 @@ export default function Home() {
                   onChange={(e) =>
                     setNewTask({ ...newTask, description: e.target.value })
                   }
-                  className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                  className="px-3 mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm text-[#333]"
                   rows={3}
                 />
               </div>
@@ -162,7 +165,9 @@ export default function Home() {
 
           <div className="bg-white shadow rounded-lg">
             <div className="px-4 py-5 sm:p-6">
-              <h2 className="text-lg font-medium mb-4">Your Tasks</h2>
+              <h2 className="text-lg font-medium mb-4 text-[#333]">
+                Your Tasks
+              </h2>
               <div className="space-y-4">
                 {tasks.map((task) => (
                   <div
@@ -189,9 +194,7 @@ export default function Home() {
                         {task.description && (
                           <p
                             className={`text-sm ${
-                              task.completed
-                                ? "text-gray-500"
-                                : "text-gray-600"
+                              task.completed ? "text-gray-500" : "text-gray-600"
                             }`}
                           >
                             {task.description}
